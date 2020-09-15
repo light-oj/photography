@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="content-area single-post flex">
+            <div class="col-12 col-xl-6">
+                <figure class="featured-img">
+                    <img src="{{ blog.thumbnail.url }}" alt="">
+                </figure>
+            </div><!-- .blog-item -->
+
+            <div class="col-12 col-xl-6">
+                <header class="entry-header">
+                    <div>
+                        <br/>
+                        {% if request.user.is_staff %}
+                        <a class="btn btn-success" href="{% url 'blog-update' id=blog.id %}">Update</a>
+                        <a class="btn btn-danger" href="{% url 'blog-delete' id=blog.id %}">Delete</a>
+                        {% endif %}
+                    </div>
+                    <div class="post-meta">
+                        <a href="#">{{ blog.category }}</a>
+                    </div><!-- .meta-post -->
+
+                    <h1>{{ blog.title }}</h1>
+
+                    <span class="byline">by <span class="author"><a href="#">{{ blog.author }}</a></span></span>
+                </header><!-- .entry-header -->
+
+                <div class="entry-content">
+                    {{ blog.content | safe }}
+                </div><!-- .entry-content -->
+
+                <footer class="entry-footer">
+                    <ul class="entry-metas flex align-items-center">
+                        <li><label>DATE:</label> <a href="#">{{ blog.timestamp }}</a></li>
+                        <li><label>CATEGORY:</label> <a href="#">{{ blog.category }}</a></li>
+                        <li><label>TAGS:</label> 
+                            {% for tag in blog.tags.all %}
+                            <a href="">{{ tag }}</a>
+                            {% endfor %}
+                        </li>
+                    </ul>
+
+                    <div class="post-share flex align-items-center">
+                        <label>Share:</label>
+
+                        <ul class="flex align-items-center">
+                            <li class="fb"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li class="gp"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li class="in"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li class="tw"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </footer>
+            </div><!-- .single-post -->
+        </div><!-- .content-area -->
+    </div><!-- .row -->
+
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="content-area blog-wrap flex">
+            {% for blog in blog_list %}
+            <div class="col-12 col-md-6 col-lg-6 col-xl-4 blog-item">
+                <div class="blog-content">
+                    <figure>
+                        <a href="#">
+                            <img src="{{ blog.thumbnail.url }}" alt="">
+                        </a>
+                    </figure>
+                    <div class="entry-content">
+                        <ul class="flex flex-wrap justify-content-start">
+                            <li>
+                            <a href="#">{{ blog.category }}</a>
+                            </li>
+                        </ul>
+                        <h3><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h3>
+                    </div><!-- .entry-content -->
+                </div><!-- .blog-content -->
+            </div><!-- .blog-item -->
+            {% endfor %}
+        </div><!-- .content-area -->
+    </div><!-- .row -->
+
+{% endblock content %}
