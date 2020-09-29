@@ -1,3 +1,3 @@
 # photography
 
-Available <a href="femiolu.pythonanywhere.com">Here</a>
+Available here femiolu.pythonanywhere.com
